@@ -31,7 +31,7 @@ export default function Navbar() {
           href="/"
           className="relative z-[60] text-xl font-bold tracking-tighter uppercase"
         >
-          Bamburi<span className="text-brand-red">Group</span>
+          Amos<span className="text-brand-red">& Co.</span>
         </Link>
 
         {/* Desktop Links */}

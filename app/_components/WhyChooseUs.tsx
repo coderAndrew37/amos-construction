@@ -33,7 +33,7 @@ export default function WhyChooseUs() {
         {/* Header Section */}
         <div className="mb-16">
           <h2 className="text-4xl font-bold tracking-tight text-brand-dark mb-2">
-            Why Choose Bamburi Group?
+            Why Choose Amos & CO?
           </h2>
           <p className="text-lg text-brand-muted">
             Committed to quality, innovation and sustainability
