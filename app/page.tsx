@@ -1,65 +1,95 @@
-import Image from "next/image";
+import { Metadata } from "next";
+import Navbar from "./_components/Navbar";
+import Hero from "./_components/Hero";
+import Stats from "./_components/Stats";
+import ServicesGrid from "./_components/ServicesGrid";
+import ProductPreview from "./_components/ProductPreview";
+import SplitSection from "./_components/SplitSection";
+import WhyChooseUs from "./_components/WhyChooseUs";
+import GallerySlider from "./_components/GallerySlider";
+import Footer from "./_components/Footer";
+import FinalCTA from "./_components/CTA";
+import FAQ from "./_components/FAQ";
+
+// SEO Implementation
+export const metadata: Metadata = {
+  title: "Bamburi Group | Premium Roofing & Construction Materials Kenya",
+  description:
+    "Kenya's leading provider of professional roofing services, PVC installation, heat insulation, and construction materials including timber and machine hire.",
+  keywords: [
+    "Roofing Kenya",
+    "Timber Supply Nairobi",
+    "Construction Machine Hire",
+    "PVC Installation",
+    "Bamburi Group",
+  ],
+  openGraph: {
+    title: "Bamburi Group | Excellence in Construction",
+    description:
+      "Professional roofing and high-quality construction materials in Kenya.",
+    images: ["/og-image.jpg"], // Ensure you have this in your public folder
+  },
+};
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="relative">
+      {/* 1. Hero - The "Hook" */}
+      <Hero />
+
+      {/* 2. Stats - Immediate Trust Signals */}
+      <Stats />
+
+      {/* 3. About Us - Split Section (Image Left) */}
+      <SplitSection
+        tagline="Who We Are"
+        title="Decades of Integrity in Kenyan Construction"
+        description="Bamburi Group is dedicated to providing superior roofing solutions and high-quality building materials. Our commitment to precision ensures that every structure we touch stands the test of time and weather."
+        buttonText="Learn Our Story"
+        buttonHref="/about"
+        imageSrc="/images/about-construction.jpg"
+        reverse={false}
+      />
+
+      {/* 4. Services - Bento Grid */}
+      <ServicesGrid />
+
+      {/* 5. Why Choose Us - The Dark Minimalist Contrast */}
+      <WhyChooseUs />
+
+      {/* 6. The Process - Split Section (Image Right) */}
+      <SplitSection
+        tagline="Our Method"
+        title="Seamless Execution From Plan to Peak"
+        description="We follow a rigorous five-step process: Consultation, Material Selection, Structural Brandering, Precision Installation, and Final Inspection. We don't just build roofs; we engineer safety."
+        buttonText="View Our Process"
+        buttonHref="/process"
+        imageSrc="/images/roofing-process.jpg"
+        reverse={true}
+      />
+
+      <FinalCTA />
+
+      {/* 7. Product Preview - Materials & Machine Hire */}
+      <ProductPreview />
+
+      {/* 8. Recent Work - Gallery Slider */}
+      <GallerySlider />
+
+      <FAQ />
+
+      {/* 9. Final Call to Action */}
+      <FinalCTA />
+      {/* <section className="py-24 text-center bg-white border-t border-gray-100">
+        <div className="max-w-3xl mx-auto px-6">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-8">
+            Ready to secure your structure with the best in the industry?
+          </h2>
+          <button className="bg-brand-red text-white px-12 py-4 font-bold uppercase tracking-widest text-sm hover:bg-red-700 transition-colors">
+            Get Free Consultation
+          </button>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </section> */}
+    </main>
   );
 }
