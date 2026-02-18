@@ -1,6 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { whatsappNumber } from "@/lib/constants";
+import { ArrowUpRight } from "lucide-react";
 
 const services = [
   {
@@ -55,48 +57,66 @@ export default function ServicesGrid() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[250px]">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
-              className={`${service.size} group relative overflow-hidden cursor-pointer flex flex-col justify-end p-8`}
-            >
-              {/* Background Image */}
-              <div className="absolute inset-0 z-0">
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  className="object-cover transition-transform duration-700 scale-105 group-hover:scale-110"
-                />
-                {/* Minimalist Overlay: 
-                   Black gradient ensures text is always readable regardless of image brightness.
-                */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-opacity duration-500 group-hover:opacity-80" />
-              </div>
+          {services.map((service, index) => {
+            const waMsg = encodeURIComponent(
+              `Hello! I'm interested in booking your ${service.title} service. Could you provide a quote?`,
+            );
+            const waUrl = `https://wa.me/${whatsappNumber}?text=${waMsg}`;
 
-              {/* Content */}
-              <div className="relative z-10 transition-transform duration-500 group-hover:-translate-y-2">
-                <h3 className={`text-xl font-bold mb-2 ${service.textColor}`}>
-                  {service.title}
-                </h3>
-                <p
-                  className={`text-sm opacity-80 max-w-[280px] leading-relaxed ${service.textColor}`}
-                >
-                  {service.description}
-                </p>
-              </div>
+            return (
+              <motion.a
+                key={index}
+                href={waUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+                className={`${service.size} group relative overflow-hidden flex flex-col justify-end p-8`}
+              >
+                {/* Background Image */}
+                <div className="absolute inset-0 z-0">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover transition-transform duration-700 scale-105 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent transition-opacity duration-500 group-hover:opacity-90" />
+                </div>
 
-              {/* Red Accent Bar (Bottom) */}
-              <div className="absolute bottom-0 left-0 w-full h-1 bg-brand-red translate-y-full transition-transform duration-300 group-hover:translate-y-0" />
+                {/* Content */}
+                <div className="relative z-10 transition-transform duration-500 group-hover:-translate-y-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className={`text-xl font-bold ${service.textColor}`}>
+                      {service.title}
+                    </h3>
+                    <ArrowUpRight
+                      className="text-brand-red opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0"
+                      size={20}
+                    />
+                  </div>
+                  <p
+                    className={`text-sm opacity-80 max-w-[280px] leading-relaxed mb-4 ${service.textColor}`}
+                  >
+                    {service.description}
+                  </p>
 
-              {/* Subtle Red Edge Accent (Top-Left) */}
-              <div className="absolute top-0 left-0 w-1 h-0 bg-brand-red transition-all duration-300 group-hover:h-full" />
-            </motion.div>
-          ))}
+                  {/* Floating CTA that appears on hover */}
+                  <span className="text-[10px] font-black uppercase tracking-widest text-brand-red opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    Book Service Now
+                  </span>
+                </div>
+
+                {/* Red Accent Bar (Bottom) */}
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-brand-red translate-y-full transition-transform duration-300 group-hover:translate-y-0" />
+
+                {/* Subtle Red Edge Accent (Top-Left) */}
+                <div className="absolute top-0 left-0 w-1 h-0 bg-brand-red transition-all duration-300 group-hover:h-full" />
+              </motion.a>
+            );
+          })}
         </div>
       </div>
     </section>
