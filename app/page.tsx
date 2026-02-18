@@ -13,7 +13,7 @@ import FAQ from "./_components/FAQ";
 
 // SEO Implementation
 export const metadata: Metadata = {
-  title: "Bamburi Group | Premium Roofing & Construction Materials Kenya",
+  title: "Amos & CO | Premium Roofing & Construction Materials Kenya",
   description:
     "Kenya's leading provider of professional roofing services, PVC installation, heat insulation, and construction materials including timber and machine hire.",
   keywords: [
@@ -21,10 +21,10 @@ export const metadata: Metadata = {
     "Timber Supply Nairobi",
     "Construction Machine Hire",
     "PVC Installation",
-    "Bamburi Group",
+    "Amos & CO",
   ],
   openGraph: {
-    title: "Bamburi Group | Excellence in Construction",
+    title: "Amos & CO | Excellence in Construction",
     description:
       "Professional roofing and high-quality construction materials in Kenya.",
     images: ["/og-image.jpg"], // Ensure you have this in your public folder
@@ -44,7 +44,7 @@ export default function Home() {
       <SplitSection
         tagline="Who We Are"
         title="Decades of Integrity in Kenyan Construction"
-        description="Bamburi Group is dedicated to providing superior roofing solutions and high-quality building materials. Our commitment to precision ensures that every structure we touch stands the test of time and weather."
+        description="Amos & CO is dedicated to providing superior roofing solutions and high-quality building materials. Our commitment to precision ensures that every structure we touch stands the test of time and weather."
         buttonText="Learn Our Story"
         buttonHref="/about"
         imageSrc="/images/about-construction.jpg"

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { whatsappNumber } from "@/lib/constants";
 
 const navLinks = [
   { name: "Services", href: "/services" },
@@ -13,6 +14,12 @@ const navLinks = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+
+  // Pre-filled WhatsApp link
+  const quoteMessage = encodeURIComponent(
+    "Hello Amos, I am interested in a free consultation for my upcoming project. Could you please provide more details?",
+  );
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${quoteMessage}`;
 
   // Prevent scrolling when mobile menu is open
   useEffect(() => {
@@ -45,13 +52,17 @@ export default function Navbar() {
               {link.name}
             </Link>
           ))}
-          <motion.button
+
+          <motion.a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="bg-brand-red px-5 py-2 text-sm font-semibold text-white transition-all hover:bg-red-700"
           >
             Get a Quote
-          </motion.button>
+          </motion.a>
         </div>
 
         {/* Mobile Toggle */}
@@ -112,9 +123,15 @@ export default function Navbar() {
                   <p className="text-xs uppercase tracking-widest text-brand-muted mb-4">
                     Need Assistance?
                   </p>
-                  <button className="w-full bg-brand-red py-4 text-sm font-bold uppercase tracking-widest text-white">
+
+                  <motion.a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full bg-brand-red py-4 text-center text-sm font-bold uppercase tracking-widest text-white shadow-lg"
+                  >
                     Get a Quote
-                  </button>
+                  </motion.a>
                 </motion.div>
               </div>
             </motion.div>

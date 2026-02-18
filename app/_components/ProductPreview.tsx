@@ -1,4 +1,5 @@
 "use client";
+import { whatsappNumber } from "@/lib/constants";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -46,56 +47,61 @@ export default function ProductPreview() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {previewProducts.map((product, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              whileHover={{ y: -10 }}
-              className="bg-white p-4 shadow-sm border border-gray-100 flex flex-col group"
-            >
-              {/* Image Container */}
-              <div className="aspect-square relative mb-6 overflow-hidden bg-gray-50">
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  fill
-                  className="object-cover transition-all duration-500 grayscale group-hover:grayscale-0 group-hover:scale-110"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-                {/* Subtle Brand Tag */}
-                <div className="absolute top-4 left-4 bg-white/90 px-2 py-1 text-[8px] font-bold uppercase tracking-widest text-brand-dark">
-                  In Stock
+          {previewProducts.map((product, i) => {
+            // Generate unique WhatsApp link for each product
+            const productMessage = encodeURIComponent(
+              `Hello Amos, I'm interested in ordering ${product.name}. Please provide a quote.`,
+            );
+            const productWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${productMessage}`;
+
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -10 }}
+                className="bg-white p-4 shadow-sm border border-gray-100 flex flex-col group"
+              >
+                {/* Image Container */}
+                <div className="aspect-square relative mb-6 overflow-hidden bg-gray-50">
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    fill
+                    className="object-cover transition-all duration-500 grayscale group-hover:grayscale-0 group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                  <div className="absolute top-4 left-4 bg-white/90 px-2 py-1 text-[8px] font-bold uppercase tracking-widest text-brand-dark">
+                    In Stock
+                  </div>
                 </div>
-              </div>
 
-              {/* Product Details */}
-              <div className="px-2 pb-4">
-                <span className="text-[10px] uppercase tracking-[0.2em] text-brand-muted font-bold mb-2 block">
-                  {product.category}
-                </span>
-                <h3 className="text-xl font-bold mb-1 text-brand-dark group-hover:text-brand-red transition-colors">
-                  {product.name}
-                </h3>
-                <p className="text-brand-muted text-sm font-medium mb-6">
-                  {product.price}
-                </p>
+                {/* Product Details */}
+                <div className="px-2 pb-4 flex flex-col flex-grow">
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-brand-muted font-bold mb-2 block">
+                    {product.category}
+                  </span>
+                  <h3 className="text-xl font-bold mb-1 text-brand-dark group-hover:text-brand-red transition-colors">
+                    {product.name}
+                  </h3>
+                  <p className="text-brand-muted text-sm font-medium mb-6">
+                    {product.price}
+                  </p>
 
-                <button
-                  onClick={() =>
-                    window.open(
-                      `https://wa.me/254700000000?text=Hello! I'm interested in ordering ${product.name}.`,
-                    )
-                  }
-                  className="w-full bg-brand-red text-white py-4 text-xs font-bold uppercase tracking-widest hover:bg-brand-dark transition-all shadow-lg shadow-brand-red/10 group-hover:shadow-brand-red/20"
-                >
-                  Order via WhatsApp
-                </button>
-              </div>
-            </motion.div>
-          ))}
+                  <motion.a
+                    href={productWhatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-auto w-full bg-brand-red text-white py-4 text-center text-xs font-bold uppercase tracking-widest hover:bg-brand-dark transition-all shadow-lg shadow-brand-red/10 group-hover:shadow-brand-red/20"
+                  >
+                    Order via WhatsApp
+                  </motion.a>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

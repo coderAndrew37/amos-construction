@@ -1,8 +1,15 @@
 "use client";
+import { whatsappNumber } from "@/lib/constants";
 import { motion } from "framer-motion";
-import { HardHat, Ruler, Truck, ShieldCheck } from "lucide-react";
+import Link from "next/link";
 
 export default function Hero() {
+  const message = encodeURIComponent(
+    "Hello Amos, I am interested in a free consultation for my upcoming project. Could you please provide more details?",
+  );
+
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-brand-dark">
       {/* 1. Background Image with Overlay */}
@@ -44,12 +51,18 @@ export default function Hero() {
           transition={{ delay: 0.5 }}
           className="flex flex-col md:flex-row gap-4 justify-center"
         >
-          <button className="bg-brand-red text-white px-10 py-4 font-bold text-sm uppercase tracking-widest hover:bg-red-700 transition-all">
+          <a
+            href={whatsappUrl}
+            className="bg-brand-red text-white px-10 py-4 font-bold text-sm uppercase tracking-widest hover:bg-red-700 transition-all"
+          >
             Start Your Project
-          </button>
-          <button className="border border-white text-white px-10 py-4 font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-brand-dark transition-all">
+          </a>
+          <Link
+            href="/products"
+            className="border border-white text-white px-10 py-4 font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-brand-dark transition-all"
+          >
             View Materials
-          </button>
+          </Link>
         </motion.div>
       </div>
     </section>

@@ -68,7 +68,7 @@ export default function GallerySlider() {
           </p>
         </div>
         <Link
-          href="/gallery"
+          href="/projects"
           className="group flex items-center gap-2 text-sm font-bold border-b-2 border-brand-dark pb-1 hover:text-brand-red hover:border-brand-red transition-all"
         >
           View Full Gallery

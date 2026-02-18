@@ -1,16 +1,23 @@
 "use client";
+import { whatsappNumber } from "@/lib/constants";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
 export default function FinalCTA() {
+  const message = encodeURIComponent(
+    "Hello Amos, I am interested in a free consultation for my upcoming project. Could you please provide more details?",
+  );
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+
   return (
     <section className="relative py-32 text-center overflow-hidden bg-brand-dark">
       {/* Background Image with heavy overlay */}
       <Image
-        src="/images/cta-background.jpg" // A shot of a modern roof or timber structure
+        src="/images/cta-background.jpg"
         alt="Construction background"
         fill
         className="object-cover opacity-20 grayscale"
+        priority
       />
 
       {/* Vignette Overlay for depth */}
@@ -26,13 +33,17 @@ export default function FinalCTA() {
           <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-white mb-8 leading-tight">
             Ready to secure your structure with the best in the industry?
           </h2>
-          <motion.button
+
+          <motion.a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-brand-red text-white px-12 py-5 font-bold uppercase tracking-widest text-sm shadow-xl hover:bg-red-700 transition-all"
+            className="inline-block bg-brand-red text-white px-12 py-5 font-bold uppercase tracking-widest text-sm shadow-xl hover:bg-red-700 transition-all active:ring-2"
           >
             Get Free Consultation
-          </motion.button>
+          </motion.a>
         </motion.div>
       </div>
     </section>
